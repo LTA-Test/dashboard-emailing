@@ -4,6 +4,16 @@ import pandas as pd
 import plotly.express as px
 import time
 
+@st.cache_data(ttl=600)
+def load_data():
+    # On récupère les clés depuis les Secrets de Streamlit
+    client = boto3.client(
+        "athena", 
+        region_name=st.secrets["aws"]["region_name"],
+        aws_access_key_id=st.secrets["aws"]["aws_access_key_id"],
+        aws_secret_access_key=st.secrets["aws"]["aws_secret_access_key"]
+    )
+
 # --- CONFIGURATION ---
 st.set_page_config(page_title="Agency LTA - Dashboard Emailing", layout="wide")
 
@@ -128,4 +138,5 @@ with st.expander("Voir les données brutes"):
 
 # Bouton de rafraichissement manuel
 if st.button('Rafraîchir les données'):
+
     st.cache_data.clear()
