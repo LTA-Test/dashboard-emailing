@@ -4,33 +4,14 @@ import pandas as pd
 import plotly.express as px
 import time
 
-@st.cache_data(ttl=600)
-def load_data():
-    # On récupère les clés depuis les Secrets de Streamlit
-    client = boto3.client(
-        "athena", 
-        region_name=st.secrets["aws"]["region_name"],
-        aws_access_key_id=st.secrets["aws"]["aws_access_key_id"],
-        aws_secret_access_key=st.secrets["aws"]["aws_secret_access_key"]
-    )
-
-# --- CONFIGURATION ---
-st.set_page_config(page_title="Agency LTA - Dashboard Emailing", layout="wide")
-
-# Récupération des secrets (Configurés plus tard dans le Cloud)
-# En local, il faudra créer un fichier .streamlit/secrets.toml
-AWS_REGION = "eu-north-1"
-ATHENA_BUCKET = "athena-results-lta"
-DATABASE = "default"
-
 # --- FONCTION DE CHARGEMENT DES DONNÉES (Mise en cache pour la vitesse) ---
 @st.cache_data(ttl=600) # Rafraîchit les données toutes les 10 min
 def load_data():
     client = boto3.client(
         "athena", 
-        region_name=AWS_REGION,
-        # Si hébergé, les clés seront gérées par les variables d'environnement
-        # Si local, il prend vos clés ~/.aws/credentials
+         region_name=st.secrets["aws"]["region_name"],
+        aws_access_key_id=st.secrets["aws"]["aws_access_key_id"],
+        aws_secret_access_key=st.secrets["aws"]["aws_secret_access_key"]
     )
     
     # Requête pour avoir les stats par jour et par campagne
@@ -140,3 +121,4 @@ with st.expander("Voir les données brutes"):
 if st.button('Rafraîchir les données'):
 
     st.cache_data.clear()
+
