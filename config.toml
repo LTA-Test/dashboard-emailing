@@ -1,6 +1,6 @@
 [theme]
 primaryColor = "#F63366" # La couleur des boutons et des sliders
-backgroundColor = "#FFFFFF" # Fond de page
+backgroundColor = "#F63366" # Fond de page
 secondaryBackgroundColor = "#F0F2F6" # Fond de la sidebar
 textColor = "#262730" # Couleur du texte
 font = "sans serif"
