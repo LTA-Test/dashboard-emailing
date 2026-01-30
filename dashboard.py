@@ -8,6 +8,74 @@ import os
 # --- CONFIGURATION ---
 st.set_page_config(page_title="Automation LTA - Dashboard Emailing", layout="wide")
 
+# --- THÈME PERSONNALISÉ (matching le site automationlta.com) ---
+st.markdown("""
+<style>
+    /* Couleurs principales */
+    :root {
+        --primary: #1a1a2e;
+        --accent: #7CB342;
+    }
+
+    /* Fond de la page */
+    .stApp {
+        background-color: #f8f9fa;
+    }
+
+    /* Titres principaux */
+    h1, h2, h3 {
+        color: #1a1a2e !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: white;
+        border-right: 1px solid #e9ecef;
+    }
+
+    /* Boutons */
+    .stButton > button {
+        background-color: #7CB342;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .stButton > button:hover {
+        background-color: #689f38;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(124, 179, 66, 0.3);
+    }
+
+    /* Metrics */
+    [data-testid="stMetricValue"] {
+        color: #7CB342 !important;
+    }
+
+    /* Links */
+    a {
+        color: #7CB342;
+    }
+
+    /* Expander */
+    .streamlit-expanderHeader {
+        background-color: white;
+        border-radius: 10px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Logo et titre personnalisé
+st.markdown("""
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 30px;">
+    <h1 style="margin: 0 !important;">📊 Monitor Emailing</h1>
+    <span style="background: #7CB342; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Automation LTA</span>
+</div>
+""", unsafe_allow_html=True)
+
 # VOS PARAMÈTRES FIXES (Stockholm)
 AWS_REGION = "eu-west-3"
 ATHENA_BUCKET = "athena-results-l3a" 
